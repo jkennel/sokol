@@ -1,0 +1,277 @@
+---
+title: "Blended Head Calculations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Blended Head Calculations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sokol)
+library(ggplot2)
+library(patchwork)
+library(data.table)
+```
+
+## Proof
+
+$$T_{tot} = T_1 + T_2$$
+$$T_1 = T_{1a} + T_{1b}$$ 
+$$T_2 = T_{tot} - T_1$$
+$$T_2 = T_{tot} - T_{1a} - T_{1b} $$
+$$T_1a = T_1 x$$
+$$T_1b = T_1(1-x)$$
+
+Starting blended head referenced to zero
+$$h_w = 0$$
+
+$$T_1 (h_1-h_w) + T_2 (h_2-h_w) = 0 $$
+$$T_1 h_1 + T_2 h_2 = 0 $$
+$$(T_{1a} + T_{1b}) h_1 + T_2 h_2 = 0 $$
+
+Remove $T_{1b}$
+$$T_{1a}(h_1 - \Delta h_w) + T_2 (h_2 - \Delta h_w) = \Delta h_w$$
+
+$$T_{1a}h_1 - T_{1a} \Delta h_w + T_2 h_2 - T_2 \Delta h_w = \Delta h_w$$
+
+$$T_{1a}h_1 - T_{1a} \Delta h_w - T_1 h_1 - T_{tot} \Delta h_w - T_{1a} \Delta h_w - T_{1b} \Delta h_w = \Delta h_w$$
+
+$$T_{1a}h_1 - T_{1a} \Delta h_w - T_{1a} h_1 - T_{1b} h_1 - T_{tot} \Delta h_w - T_{1a} \Delta h_w - T_{1b} \Delta h_w = \Delta h_w$$
+
+$$ - T_{1a} \Delta h_w - T_{1b} h_1 - T_{tot} \Delta h_w - T_{1a} \Delta h_w - T_{1b} \Delta h_w = \Delta h_w$$
+
+$$ - T_{1b} h_1 = \Delta h_w + T_{1a} \Delta h_w + T_{tot} \Delta h_w + T_{1a} \Delta h_w + T_{1b} \Delta h_w$$
+
+$$ - T_{1b} h_1 - T_{1a} \Delta h_w - T_{1a} \Delta h_w - T_{1b} \Delta h_w = \Delta h_w + T_{tot} \Delta h_w$$
+
+$$ T_1(1-x) h_1 - 2T_1(x) \Delta h_w - T_1(1-x) \Delta h_w = \Delta h_w + T_{tot} \Delta h_w$$
+
+$$ T_1(1-x) h_1 - T_1(x) \Delta h_w - T_1 \Delta h_w = \Delta h_w + T_{tot} \Delta h_w$$
+
+$$ T_1 h_1 - T_1x h_1 - T_1x \Delta h_w - T_1 \Delta h_w = \Delta h_w + T_{tot} \Delta h_w$$
+
+$$  - T_1x h_1 - T_1x \Delta h_w = \Delta h_w + T_{tot} \Delta h_w - T_1 h_1 + T_1 \Delta h_w$$
+$$  x(- T_1 h_1 - T_1 \Delta h_w) = \Delta h_w + T_{tot} \Delta h_w - T_1 h_1 + T_1 \Delta h_w$$
+$$  x = \frac{\Delta h_w + T_{tot} \Delta h_w - T_1 h_1 + T_1 \Delta h_w}{(-T_1 h_1 - T_1 \Delta h_w)}$$
+
+```{r}
+h_w <- 0.1
+t_tot <- 8
+t_1 <- 4
+h_1 <- -0.2
+
+x <- (h_w + t_tot*h_w - t_1*h_1 + t_1*h_w) / (-t_1*h_1 - t_1*h_w)
+
+x * t_1
+
+
+
+```
+
+##
+$$ - T_{1b} h_1  = \Delta h_w(1 + T_{1a} + T_{tot} + T_{1a} + T_{1b} )$$
+$$ - T_{1b} h_1  = \Delta h_w(1 + 2T_1 x + T_{tot} + T_1(1-x) )$$
+$$ (- T_1 - T_1x) h_1  = \Delta h_w(1 + T_1 x + T_{tot} + T_1)$$
+
+
+##
+
+$$\frac{- T_{1b} h_1}{1 + 2T_{1a} + T_{tot} + T_{1b}} = \Delta h_w$$
+
+$$\frac{- T_{1b}}{1 + 2T_{1a} + T_{tot} + T_{1b}} = \frac{\Delta h_w}{h_1}$$
+
+$$\frac{- T_1 (1-x)}{1 + 2T_1 x + T_{tot} + T_1 (1-x)} = \frac{\Delta h_w}{h_1}$$
+
+$$\frac{- T_1 - T_1 x}{1 + T_1 x + T_{tot} + T_1} = \frac{\Delta h_w}{h_1}$$
+
+
+
+
+###
+$$T_{1a}(h_1 - \Delta h_w) - (T_{1a} + T_{1b}) h_1 - (T_{1a} + T_{1b} - T_{tot}) \Delta h_w = \Delta h_w$$
+
+
+
+
+$$T_{1a} h_1 - T_{1a} \Delta h_w - T_{1a} h_1 + T_{1b} h_1 - T_{1a} \Delta h_w + T_{1b} \Delta h_w - T_{tot} \Delta h_w = \Delta h_w$$
+
+$$ - 2T_{1a} \Delta h_w + T_{1b} h_1 + T_{1b} \Delta h_w - T_{tot} \Delta h_w = \Delta h_w$$
+
+$$ T_{1b} h_1 = \Delta h_w + T_{tot} \Delta h_w - T_{1b} \Delta h_w + 2T_{1a} \Delta h_w $$
+
+$$ T_{1b} h_1 = \Delta h_w (T_{tot} - T_{1b} + 2T_{1a})$$
+
+$$ \frac{T_{1b} h_1}{(T_{tot} - T_{1b} + 2T_{1a})} = \Delta h_w $$
+
+
+
+substitute T_2
+
+
+
+
+## Proof
+
+
+
+$$T_{tot} = \sum\limits_{n=1}^{\infty} T_n $$ 
+
+
+$$h_{tot} = \frac{\sum\limits_{n=1}^{\infty} T_n h_n}{\sum\limits_{n=1}^{\infty} T_n} $$ 
+
+$$\Delta h = \frac{C_{tot}}{T_{tot}} - \frac{C_{sub}}{T_{sub}} $$ 
+
+$$ \frac{C_{sub} + C_{int}}{C_{tot}} = 1$$
+
+
+
+$$ C_{tot} = C_{sub}\frac{1}{x} $$
+$$ C_{sub} = x C_{tot} $$
+
+$$ T_{tot} = T_{sub}\frac{1}{x} $$
+$$ T_{sub} = x T_{tot} $$
+
+
+$$\Delta h = \frac{C_{tot}}{T_{tot}} - \frac{C_{sub}}{T_{sub}} $$ 
+
+$$\Delta h = \frac{C_{tot}}{T_{tot}} - \frac{xC_{tot}}{xT_{tot}} $$ 
+
+
+
+
+```{r blended}
+# head_1 <- sort(rnorm(10))
+# transmissivity_1 <- abs(rnorm(10, sd = 10))
+# transmissivity_2 <- transmissivity_1
+# transmissivity_2[1] <- transmissivity_2[1] * 0.5
+# transmissivity_na <- transmissivity_1
+# transmissivity_na[1] <- NA
+# 
+# b  <- estimate_blended(transmissivity_1, head_1)
+# b1 <- estimate_blended(transmissivity_1, head_1 - b)
+# b2 <- estimate_blended(transmissivity_2, head_1 - b)
+# 
+# 
+# b
+# b1
+# b2
+# 
+# sum(transmissivity_1) / sum(transmissivity_2)
+# 
+# p1 <- plot_blended(transmissivity_1, head_1-b)
+# p2 <- plot_blended(transmissivity_2, head_1-b)
+# p1 / p2
+# 
+# t_prop <- c()
+# h      <- c()
+# a      <- c()
+# n      <- 20
+# t1     <- c()
+# t2     <- c()
+# bl1    <- c()
+# bl2    <- c()
+# for (i in 1:1000) {
+#   
+#   head_1 <- sort(rnorm(n))
+#   transmissivity_1 <- abs(rnorm(n, sd = 10))
+#   transmissivity_2 <- transmissivity_1
+#   transmissivity_2[1] <- transmissivity_2[1] * 0.1
+#   transmissivity_na <- transmissivity_1
+#   transmissivity_na[1] <- NA
+#   
+#   b  <- estimate_blended(transmissivity_1, head_1)
+#   b1 <- estimate_blended(transmissivity_1, head_1 - b)
+#   b2 <- estimate_blended(transmissivity_2, head_1 - b)
+#   
+#   t_prop[i] <- (sum(transmissivity_1) - sum(transmissivity_2)) / sum(transmissivity_2)
+#   
+#   h[i] <- b2
+#   t1[i] <- sum(transmissivity_1)
+#   t2[i] <- sum(transmissivity_2)
+# 
+# }
+# 
+# dt <- data.table(h, t1, t2)
+# fit <- lm(h~t1 + t2, dt)
+# summary(fit)
+# 
+# plot(h~t_prop, pch = 20)
+# 
+# transmissivity_1
+# transmissivity_2
+# estimate_missing(b2, transmissivity_na, head_1-b)
+
+  
+# 
+# (b2-b1)
+# b1
+# b2
+# 
+# b1/b2
+# b2/b1
+# 
+# b3
+# b4
+# 
+# transmissivity_1
+# transmissivity_2
+# head_1
+
+
+```
+
+
+
+## Estimate Transmissivity
+
+Head terms:
+
+$$h_{tot}$$ 
+$$h_{sub}$$
+$$h_{int}$$ 
+
+Transmissivity terms: 
+
+$$T_{tot} = \sum\limits_{n=1}^{\infty} T_n $$ 
+$$T_{sub} = \sum\limits_{n=1}^{\infty} T_n - T_{int}$$ 
+$$T_{sub} = T_{tot} - T_{int}$$ 
+
+Flow terms:
+
+$$C_{tot} = \sum\limits_{n=1}^{\infty} T_n h_n $$ 
+$$C_{sub} = \sum\limits_{n=1}^{\infty} T_n h_n  - T_{int} * h_{int}$$ 
+$$C_{int} = T_{int} * h_{int}$$
+$$C_{sub} = C_{tot} - C_{int}$$
+
+
+
+$$T_{tot} = T_1 + T_2$$
+$$T_1 = T_{1a} + T_{1b}$$
+$$T_{tot} = T_{1a} + T_{1b} + T_2$$
+
+$$T_1 ( ^1h_w - h_1) + T_2 ( ^1h_w - h_2) = 0$$
+
+$$T_{1a} ( ^2h_w - h_1) + T_2 ( ^2h_w - h_2) = 0$$
+
+$$T_{1a} ( ^2h_w) + T_2 ( ^2h_w) = T_1 ( ^1h_w) + T_2  (^1h_w)$$
+
+$$^2T_{tot} ^2h_w = ^1T_{tot} ^1h_w$$
+
+$$^2T_{tot} ^2h_w = ^1T_{tot} ^1h_w$$
+
+
+$$\frac{T_{1a} ( ^2h_w)}{T_1 ( ^1h_w)} =  T_2  (^1h_w) - T_2 ( ^2h_w)$$
+$$\frac{T_{1a} ( ^2h_w)}{T_1 ( ^1h_w)} =  T_2  (^1h_w) - T_2 ( ^2h_w)$$
+
+$$\frac{T_{1a} ( ^2h_w)}{T_1 ( ^1h_w)(^1h_w - ^2h_w)} = T_2$$
+
+
+

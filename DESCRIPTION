@@ -1,0 +1,25 @@
+Package: sokol
+Type: Package
+Title: Blended water level analysis for wells
+Version: 0.0.1
+Authors@R: c(person("Jonathan", "Kennel", email = "jkennel@uoguelph.ca", role = c("aut", "cre", "trl")), 
+             person("Beth", "Parker", email = "bparker@uoguelph.ca", role = "ths"))
+Maintainer: Jonathan Kennel <jkennel@uoguelph.ca>
+Description: This package provides a few method to assist in the interpretation
+    of wells that cross-connect multiple hydrogeologic units with variable
+    hydraulic head and transmissivity profiles.
+License: GPL-3
+Encoding: UTF-8
+Depends: 
+    R (>= 4.1.1)
+imports: 
+  ggplot2,
+  patchwork,
+  data.table
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown,
+    tinytest
+VignetteBuilder: knitr
+RoxygenNote: 7.1.1

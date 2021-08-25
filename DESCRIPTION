@@ -18,6 +18,7 @@ imports:
   data.table
 LazyData: true
 Suggests: 
+    covr,
     knitr,
     rmarkdown,
     tinytest

@@ -11,11 +11,11 @@ Description: This package provides a few method to assist in the interpretation
 License: GPL-3
 Encoding: UTF-8
 Depends: 
-    R (>= 4.1.1)
-imports: 
-  ggplot2,
-  patchwork,
-  data.table
+    R (>= 4.0.0)
+Imports:
+    data.table,
+    patchwork,
+    ggplot2
 LazyData: true
 Suggests: 
     covr,

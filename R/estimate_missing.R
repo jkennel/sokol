@@ -30,7 +30,7 @@
 #'
 estimate_missing <- function(blended, transmissivity, head) {
 
-  dat  <- data.table::data.table(transmissivity = transmissivity,
+  dat  <- data.table(transmissivity = transmissivity,
                                  head = head)
   complete <- na.omit(dat)
   na_dat   <- dat[which(is.na(transmissivity) + is.na(head) > 0),]
@@ -47,7 +47,7 @@ estimate_missing <- function(blended, transmissivity, head) {
     term_2 <- sum(complete$transmissivity * complete$head)
     term_3 <- na_dat$transmissivity[1]
   } else {
-    error('One and only one missing value for head or transmissivity can be
+    stop('One and only one missing value for head or transmissivity can be
           provided')
   }
 

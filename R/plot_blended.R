@@ -23,13 +23,15 @@
 #' plot_blended(transmissivity, head)
 plot_blended <- function(transmissivity, head) {
 
+  Intervals <- Transmissivity <- Head <- NULL   # CRAN note
+
   if(length(transmissivity) != length(head)) {
-    rlang::abort('Lengths of transmissivity and head must be equal')
+    stop('Lengths of transmissivity and head must be equal')
   }
 
   intervals   <- 1:length(transmissivity)
-  blended_val <- estimate_blended(transmissivity, head)
-  dat         <- data.table::data.table(Intervals = intervals,
+  blended_val <- estimate_blended_head(transmissivity, head)
+  dat         <- data.table(Intervals = intervals,
                                         Transmissivity = transmissivity,
                                         Head = head)
 

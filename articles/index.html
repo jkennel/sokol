@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate the transmissivity weighted blended head — estimate_missing • sokol</title>
+<title>Articles • sokol</title>
 
 
 <!-- jquery -->
@@ -39,13 +39,7 @@
 
 
 
-<meta property="og:title" content="Calculate the transmissivity weighted blended head — estimate_missing" />
-<meta property="og:description" content="`estimate_missing` takes a single blended head value and a vector of
-  transmissivity and a vector of hydraulic head and estimates a single
-  missing value of transmissivity or head.  This can be useful if you know
-  all the formation heads but are missing the transmissivity distribution, or
-  if you know the transmissivity distribution but not all the head values.
-  Only a single missing value can be estimated at this point." />
+<meta property="og:title" content="Articles" />
 
 
 
@@ -64,7 +58,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-article-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -111,68 +105,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate the transmissivity weighted blended head</h1>
-    
-    <div class="hidden name"><code>estimate_missing.Rd</code></div>
+      <h1>Articles</h1>
     </div>
 
-    <div class="ref-description">
-    <p>`estimate_missing` takes a single blended head value and a vector of
-  transmissivity and a vector of hydraulic head and estimates a single
-  missing value of transmissivity or head.  This can be useful if you know
-  all the formation heads but are missing the transmissivity distribution, or
-  if you know the transmissivity distribution but not all the head values.
-  Only a single missing value can be estimated at this point.</p>
+    <div class="section ">
+      <h3>All vignettes</h3>
+      <p class="section-desc"></p>
+
+      <dl>
+        <dt><a href="sokol.html">sokol</a></dt>
+        <dd></dt>
+      </dl>
     </div>
-
-    <pre class="usage"><span class='fu'>estimate_missing</span><span class='op'>(</span><span class='va'>blended</span>, <span class='va'>transmissivity</span>, <span class='va'>head</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>blended</th>
-      <td><p>the blended head value</p></td>
-    </tr>
-    <tr>
-      <th>transmissivity</th>
-      <td><p>the transmissivity distribution for each interval</p></td>
-    </tr>
-    <tr>
-      <th>head</th>
-      <td><p>the head distribution for each interval</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>an estimation for the missing value</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other blended head methods: 
-<code><a href='blended_head_change.html'>blended_head_change</a>()</code>,
-<code><a href='estimate_blended_head.html'>estimate_blended_head</a>()</code>,
-<code><a href='estimate_formation_head.html'>estimate_formation_head</a>()</code>,
-<code><a href='plot_blended.html'>plot_blended</a>()</code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># determine the relative magnitude of transmissivity for a zone with known</span>
-<span class='co'># head</span>
-
-<span class='va'>partial_transmissivity</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
-<span class='va'>missing_transmissivity</span> <span class='op'>&lt;-</span>
-  <span class='fu'>estimate_missing</span><span class='op'>(</span>blended <span class='op'>=</span> <span class='fl'>0</span>,
-                   transmissivity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>partial_transmissivity</span>, <span class='cn'>NA_real_</span><span class='op'>)</span>,
-                   head <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.4</span>, <span class='op'>-</span><span class='fl'>1.9</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>missing_transmissivity</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>partial_transmissivity</span> <span class='op'>+</span> <span class='va'>missing_transmissivity</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.173913</div><div class='input'>
-</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
   </div>
 </div>
 

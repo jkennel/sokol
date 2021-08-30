@@ -28,7 +28,7 @@
 #'                    head = c(0.4, -1.9))
 #' missing_transmissivity / (partial_transmissivity + missing_transmissivity)
 #'
-estimate_missing <- function(blended, transmissivity, head) {
+estimate_missing <- function(blended = NA_real_, transmissivity, head) {
 
   dat  <- data.table(transmissivity = transmissivity,
                                  head = head)
@@ -46,6 +46,8 @@ estimate_missing <- function(blended, transmissivity, head) {
     term_1 <- sum(dat$transmissivity) * blended
     term_2 <- sum(complete$transmissivity * complete$head)
     term_3 <- na_dat$transmissivity[1]
+  } else if(n_t == 0 & n_h == 0 & is.na(blended)) {
+    return(estimate_blended_head(transmissivity, head))
   } else {
     stop('One and only one missing value for head or transmissivity can be
           provided')

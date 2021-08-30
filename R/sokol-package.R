@@ -11,7 +11,6 @@
 #' @importFrom stats na.omit
 #'
 #'
-#'
 #' @docType package
 #' @aliases sokol sokol-package
 #' @keywords internal

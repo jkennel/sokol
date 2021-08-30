@@ -42,6 +42,7 @@ test_that("estimate missing works", {
   partial_head <- rnorm(10)
   blended_partial <- estimate_blended_head(partial_transmissivity, partial_head)
 
+
   expect_equal(
     estimate_missing(blended = 0,
                      transmissivity = c(partial_transmissivity, NA_real_),
@@ -49,6 +50,16 @@ test_that("estimate missing works", {
     estimate_missing(blended = 0,
                      transmissivity = c(sum(partial_transmissivity), NA_real_),
                      head = c(blended_partial, -1))
+  )
+
+  missing_transmissivity <- estimate_missing(blended = 0,
+                   transmissivity = c(partial_transmissivity, NA_real_),
+                   head = c(partial_head, -1))
+
+  expect_equal(
+    estimate_blended_head(transmissivity = c(partial_transmissivity, missing_transmissivity),
+                          head = c(partial_head, -1)),
+    0
   )
 
 

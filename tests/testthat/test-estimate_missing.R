@@ -21,5 +21,20 @@ test_that("estimate missing works", {
                                 estimate_blended_head(c(partial_transmissivity, missing_transmissivity),
                                                       head = c(0.4, -1.9)))
 
+  expect_error(estimate_missing(blended = NA_real_,
+                                transmissivity = c(partial_transmissivity, NA_real_),
+                                head = c(0.4, NA_real_)))
+
+  expect_error(estimate_missing(blended = 0,
+                                transmissivity = c(partial_transmissivity, NA_real_),
+                                head = c(0.4, NA_real_)))
+
+  expect_error(estimate_missing(blended = NA_real_,
+                                transmissivity = c(partial_transmissivity, NA_real_),
+                                head = c(0.4, -1.9)))
+
+  expect_error(estimate_missing(blended = NA_real_,
+                                transmissivity = c(partial_transmissivity, missing_transmissivity),
+                                head = c(0.4, NA_real_)))
 
 })

@@ -38,11 +38,11 @@ estimate_missing <- function(blended = NA_real_, transmissivity, head) {
   n_t <- sum(is.na(transmissivity))
   n_h <- sum(is.na(head))
 
-  if(n_t == 1 & n_h == 0) {
+  if(n_t == 1 & n_h == 0 & !is.na(blended)) {
     term_1 <- sum(complete$transmissivity) * blended
     term_2 <- sum(complete$transmissivity * complete$head)
     term_3 <- na_dat$head[1] - blended
-  } else if(n_t == 0 & n_h == 1) {
+  } else if(n_t == 0 & n_h == 1 & !is.na(blended)) {
     term_1 <- sum(dat$transmissivity) * blended
     term_2 <- sum(complete$transmissivity * complete$head)
     term_3 <- na_dat$transmissivity[1]

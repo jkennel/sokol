@@ -4,7 +4,7 @@
 \alias{estimate_missing}
 \title{Calculate the transmissivity weighted blended head}
 \usage{
-estimate_missing(blended, transmissivity, head)
+estimate_missing(blended = NA_real_, transmissivity, head)
 }
 \arguments{
 \item{blended}{the blended head value}

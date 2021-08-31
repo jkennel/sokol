@@ -73,14 +73,27 @@
 
     
     
-<div id="goal---solve-for-transmissivity-or-head-following-a-change-in-monitoring-interval" class="section level2">
+<div id="goal---estimate-the-relative-transmissivity-change-or-head" class="section level2">
 <h2 class="hasAnchor">
-<a href="#goal---solve-for-transmissivity-or-head-following-a-change-in-monitoring-interval" class="anchor"></a>Goal - Solve for transmissivity or head following a change in monitoring interval</h2>
+<a href="#goal---estimate-the-relative-transmissivity-change-or-head" class="anchor"></a>Goal - Estimate the relative transmissivity change or head</h2>
 <div id="transmissivity-solution" class="section level3">
 <h3 class="hasAnchor">
 <a href="#transmissivity-solution" class="anchor"></a>Transmissivity solution</h3>
 <p>Given (Sokol eq 6): The example will be a single unit where we add a new one.</p>
 <p><span class="math display">\[h_w = \frac{T_1 H_1}{T_1}\]</span> <span class="math display">\[h_w + \Delta h_w = \frac{T_1 H_1 + T_2 H_2}{T_1 + T_2}\]</span></p>
+<p>where:</p>
+<ul>
+<li>
+<span class="math inline">\(h_w\)</span> is the blended head for the shorter interval</li>
+<li>
+<span class="math inline">\(h_w + \Delta h_w\)</span> is the blended head for the larger interval</li>
+<li>
+<span class="math inline">\(T_1\)</span> is the transmissivity for the shorter interval</li>
+<li>
+<span class="math inline">\(T_1 + T_2\)</span> is the transmissivity for the larger interval</li>
+<li>
+<span class="math inline">\(H_2\)</span> is the head corresponding to the <span class="math inline">\(T_2\)</span> interval</li>
+</ul>
 <p>Multiply denominators:</p>
 <p><span class="math display">\[h_w T_1 = T_1 H_1\]</span> <span class="math display">\[h_w T_1 + h_w T_2 + \Delta h_w T_1 + \Delta h_w T_2 = T_1 H_1 + T_2 H_2\]</span></p>
 <p>Subtract first from second:</p>
@@ -99,7 +112,7 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>Can we recover missing values?</p>
+<p>Can we recover missing values? In this example we test if we can recover the missing value for the <span class="math inline">\(10^th\)</span> interval.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sokol</span><span class="op">)</span>
@@ -107,7 +120,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="va">transmissivity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 <span class="va">head</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plot_blended.html">plot_blended</a></span><span class="op">(</span><span class="va">transmissivity</span>, <span class="va">head</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/plot_blended.html">plot_blended</a></span><span class="op">(</span><span class="va">transmissivity</span>, <span class="va">head</span><span class="op">)</span>
+<span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_hline).</span>
+<span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_text).</span></code></pre></div>
 <p><img src="sokol_files/figure-html/setup-1.png" width="672"></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blended_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/estimate_blended_head.html">estimate_blended_head</a></span><span class="op">(</span><span class="va">transmissivity</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span>, <span class="va">head</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span>

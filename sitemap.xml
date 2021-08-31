@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jkennel.github.io/sokol/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jkennel.github.io/sokol/reference/blended_head_change.html</loc>
+  </url>
+  <url>
+    <loc>https://jkennel.github.io/sokol/reference/estimate_blended_head.html</loc>
+  </url>
+  <url>
+    <loc>https://jkennel.github.io/sokol/reference/estimate_formation_head.html</loc>
+  </url>
+  <url>
+    <loc>https://jkennel.github.io/sokol/reference/estimate_missing.html</loc>
+  </url>
+  <url>
+    <loc>https://jkennel.github.io/sokol/reference/plot_blended.html</loc>
+  </url>
+  <url>
+    <loc>https://jkennel.github.io/sokol/reference/sokol.html</loc>
+  </url>
+  <url>
+    <loc>https://jkennel.github.io/sokol/articles/sokol.html</loc>
+  </url>
+</urlset>

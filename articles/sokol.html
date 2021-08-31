@@ -49,8 +49,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/jkennel/sokol/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -66,7 +76,7 @@
       <h1 data-toc-skip>sokol</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/jkennel/sokol/blob/master/vignettes/sokol.Rmd"><code>vignettes/sokol.Rmd</code></a></small>
       <div class="hidden name"><code>sokol.Rmd</code></div>
 
     </div>
@@ -100,7 +110,7 @@
 <p><span class="math display">\[h_w T_2 + \Delta h_w T_1 + \Delta h_w T_2 = T_2 H_2\]</span></p>
 <p>Put <span class="math inline">\(T_2\)</span> on one side: <span class="math display">\[\Delta h_w T_1 = T_2 H_2 - h_w T_2 - \Delta h_w T_2\]</span></p>
 <p>Rearrange: <span class="math display">\[\frac{\Delta h_w T_1}{H_2 - h_w - \Delta h_w} = T_2\]</span></p>
-<p><span class="math inline">\(T_2\)</span> is now in terms of known values</p>
+<p>Can also solve for the transmissivity ratio: <span class="math display">\[\frac{\Delta h_w}{H_2 - h_w - \Delta h_w} = \frac{T_2}{T_1}\]</span></p>
 </div>
 <div id="head-solution" class="section level3">
 <h3 class="hasAnchor">
@@ -115,7 +125,7 @@
 <p>Can we recover missing values? In this example we test if we can recover the missing value for the <span class="math inline">\(10^th\)</span> interval.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sokol</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jkennel.github.io/sokol">sokol</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="va">transmissivity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>

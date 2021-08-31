@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate the transmissivity weighted blended head — estimate_blended_head • sokol</title>
+<title>Changelog • sokol</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,7 @@
 
 
 
-<meta property="og:title" content="Calculate the transmissivity weighted blended head — estimate_blended_head" />
-<meta property="og:description" content="`estimate_blended_head` takes a vector of transmissivity and a vector of
-hydraulic head and calculates the expected blended head for a
-cross-connected well.  The length units for transmissivity and hydraulic head
-should be the same." />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -62,7 +58,7 @@ should be the same." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -117,72 +113,23 @@ should be the same." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate the transmissivity weighted blended head</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jkennel/sokol/blob/master/R/estimate_blended_head.R'><code>R/estimate_blended_head.R</code></a></small>
-    <div class="hidden name"><code>estimate_blended_head.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/jkennel/sokol/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>`estimate_blended_head` takes a vector of transmissivity and a vector of
-hydraulic head and calculates the expected blended head for a
-cross-connected well.  The length units for transmissivity and hydraulic head
-should be the same.</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>estimate_blended_head</span><span class='op'>(</span><span class='va'>transmissivity</span>, <span class='va'>head</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>transmissivity</th>
-      <td><p>the transmissivity distribution for each interval</p></td>
-    </tr>
-    <tr>
-      <th>head</th>
-      <td><p>the head distribution for each interval</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a single value of the blended head</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>`estimate_blended_head` uses the following to calculate the
-blended head based on Sokol's 1963 equation 6:</p>
-<p>$$h_{blended} = \frac{\sum\limits_{i=1}^{N} T_i h_i}{\sum\limits_{i=1}^{N} T_i}$$</p>
-<p>where:</p>
-<p>* \(h_{blended}\) is the blended head in the well
- * \(T_i\) is the transmissivity of the \(i^th\) interval
- * \(h_i\) is the formation head of the \(i^th\) interval
- * \(i\) is the interval number
- * \(N\) is the total number of intervals</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Sokol, D. (1963). Position and fluctuations of water level in
-  wells perforated in more than one aquifer. Journal of Geophysical Research,
-  68(4), 1079-1080.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other blended head methods: 
-<code><a href='blended_head_change.html'>blended_head_change</a>()</code>,
-<code><a href='estimate_formation_head.html'>estimate_formation_head</a>()</code>,
-<code><a href='estimate_missing.html'>estimate_missing</a>()</code>,
-<code><a href='plot_blended.html'>plot_blended</a>()</code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>transmissivity</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, sd <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>       <span class='co'># random T distribution</span>
-<span class='va'>head</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>                          <span class='co'># decreasing head with depth</span>
-
-<span class='fu'>estimate_blended_head</span><span class='op'>(</span><span class='va'>transmissivity</span>, <span class='va'>head</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] -0.4531166</div></pre>
+    <div id="sokol-001" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1">
+<a href="#sokol-001" class="anchor"></a>sokol 0.0.1</h1>
+<p>This package is in early development</p>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 

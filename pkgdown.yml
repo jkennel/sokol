@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   sokol: sokol.html
-last_built: 2021-08-31T17:54Z
+last_built: 2021-08-31T18:01Z
 urls:
   reference: https://jkennel.github.io/sokol/reference
   article: https://jkennel.github.io/sokol/articles

@@ -23,29 +23,40 @@
 #' plot_blended(transmissivity, head)
 plot_blended <- function(transmissivity, head) {
 
-  Intervals <- Transmissivity <- Head <- NULL   # CRAN note
+  Intervals <- Transmissivity <- Head <- value <- top <- NULL   # CRAN note
 
   if(length(transmissivity) != length(head)) {
     stop('Lengths of transmissivity and head must be equal')
   }
 
-  intervals   <- 1:length(transmissivity)
+  n <- length(transmissivity)
+
+  intervals   <- as.integer(seq.int(n))
   blended_val <- estimate_blended_head(transmissivity, head)
   dat         <- data.table(Intervals = intervals,
-                                        Transmissivity = transmissivity,
-                                        Head = head)
+                            Transmissivity = transmissivity,
+                            Head = head,
+                            Leverage = transmissivity * head / sum(transmissivity)
+                           )
 
-  p1 <- ggplot(dat, aes(y = Head, x = Intervals)) +
-    geom_col() +
+  dat <- data.table::melt(dat, id.vars = 'Intervals')
+  ann <- data.table(variable = factor(c('Head', 'Transmissivity', 'Leverage'),
+                                  levels = levels(dat$variable)),
+                    top = c(n, NA_integer_, NA_integer_), blended_val = c(blended_val, NA_real_, NA_real_))
+
+  ggplot(dat, aes(y = value, x = Intervals)) +
+    geom_col(fill = "#00000060") +
     coord_flip() +
-    geom_hline(yintercept = blended_val, linetype = 'dashed') +
+    scale_x_continuous(expand = c(0,0), limits = c(0.5, n + 0.5), breaks = seq.int(n)) +
+    facet_wrap(variable~., scales = 'free_x') +
+    geom_hline(data = ann, aes(yintercept = blended_val), linetype = 'dashed', color = '#0000AAAA') +
+    geom_text(data = ann,
+             aes(x = top, y = blended_val),
+             label = "Blended",
+             hjust = -0.1, vjust = 0.5,
+             color = '#0000AAAA',
+             size = 4) +
     theme_bw()
 
-  p2 <- ggplot(dat, aes(y = Transmissivity, x = intervals)) +
-    geom_col() +
-    coord_flip() +
-    theme_bw()
-
-  p1 + p2
 
 }

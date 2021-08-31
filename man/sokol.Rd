@@ -16,6 +16,7 @@ This package provides a few method to assist in the
 
 Other contributors:
 \itemize{
+  \item Julie Zettl \email{julie.zettl@g360group.org} [contributor]
   \item Beth Parker \email{bparker@uoguelph.ca} [thesis advisor]
 }
 

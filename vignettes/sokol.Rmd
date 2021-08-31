@@ -51,7 +51,9 @@ $$\Delta h_w T_1 = T_2 H_2 - h_w T_2 - \Delta h_w T_2$$
 Rearrange:
 $$\frac{\Delta h_w T_1}{H_2 - h_w - \Delta h_w} = T_2$$
 
-$T_2$ is now in terms of known values
+Can also solve for the transmissivity ratio:
+$$\frac{\Delta h_w}{H_2 - h_w - \Delta h_w} = \frac{T_2}{T_1}$$
+
 
 
 ### Head solution

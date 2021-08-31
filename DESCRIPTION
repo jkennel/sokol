@@ -9,6 +9,8 @@ Maintainer: Jonathan Kennel <jkennel@uoguelph.ca>
 Description: This package provides a few method to assist in the interpretation
     of wells that cross-connect multiple hydrogeologic units with variable
     hydraulic head and transmissivity profiles.
+BugReports: https://github.com/jkennel/sokol/issues
+URL: https://jkennel.github.io/sokol, https://github.com/sokol/earthtide
 License: GPL-3
 Encoding: UTF-8
 Depends: 

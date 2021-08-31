@@ -67,7 +67,7 @@ $$H_2 = \frac{h_w T_2 + \Delta h_w T_1 + \Delta h_w T_2}{T_2}$$
 
 
 ## Examples
-Can we recover missing values?  In this example we test if we can recover the missing value for the $10^th$ interval.
+Can we recover missing values?  In this example we test if we can recover the missing value for the $10^{th}$ interval.
 
 ```{r setup, fig.width = 7, fig.height = 5}
 

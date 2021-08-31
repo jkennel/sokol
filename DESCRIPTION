@@ -3,8 +3,8 @@ Type: Package
 Title: Blended water level analysis for wells
 Version: 0.0.1
 Authors@R: c(person("Jonathan", "Kennel", email = "jkennel@uoguelph.ca", role = c("aut", "cre")), 
-             person("Julie", "Zettl", email = "julie.zettl@g360group.org", role = c("ctb")),
-             person("Beth", "Parker", email = "bparker@uoguelph.ca", role = "ths"))
+             person("Julie", "Zettl", email = "julie.zettl@g360group.org", role = c("rtm")),
+             person("Beth", "Parker", email = "bparker@uoguelph.ca", role = "rth"))
 Maintainer: Jonathan Kennel <jkennel@uoguelph.ca>
 Description: This package provides a few method to assist in the interpretation
     of wells that cross-connect multiple hydrogeologic units with variable

@@ -49,14 +49,19 @@ plot_blended <- function(transmissivity, head) {
     coord_flip() +
     scale_x_continuous(expand = c(0,0), limits = c(0.5, n + 0.5), breaks = seq.int(n)) +
     facet_wrap(variable~., scales = 'free_x') +
-    geom_hline(data = ann, aes(yintercept = blended_val), linetype = 'dashed', color = '#0000AAAA') +
+    geom_hline(data = ann, aes(yintercept = blended_val),
+               linetype = 'dashed', color = '#0000AAAA', na.rm=TRUE) +
     geom_text(data = ann,
              aes(x = top, y = blended_val),
              label = "Blended",
              hjust = -0.1, vjust = 0.5,
              color = '#0000AAAA',
-             size = 4) +
-    theme_bw()
+             size = 4,
+             na.rm=TRUE) +
+    theme_bw() +
+    theme(panel.grid.major.y = element_blank(),
+          panel.grid.minor.y = element_blank()
+          )
 
 
 }

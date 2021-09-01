@@ -79,14 +79,26 @@ head <- sort(rnorm(10))
 plot_blended(transmissivity, head)
 blended_1 <- estimate_blended_head(transmissivity[1:9], head[1:9])
 blended_2 <- estimate_blended_head(transmissivity, head)
+
+
+# estimate interval head
 estimate_missing(blended_2, 
                  c(transmissivity),
                  c(head[1:9], NA_real_))
 head[10]
 
+
+# estimate interval transmissivity
 estimate_missing(blended_2, 
                  c(transmissivity[1:9], NA_real_),
                  c(head))
 transmissivity[10]
+
+
+# estimate blended head
+estimate_missing(NA_real_, 
+                 c(transmissivity),
+                 c(head))
+blended_2
 
 ```

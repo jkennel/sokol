@@ -135,6 +135,9 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blended_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/estimate_blended_head.html">estimate_blended_head</a></span><span class="op">(</span><span class="va">transmissivity</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span>, <span class="va">head</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span>
 <span class="va">blended_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/estimate_blended_head.html">estimate_blended_head</a></span><span class="op">(</span><span class="va">transmissivity</span>, <span class="va">head</span><span class="op">)</span>
+
+
+<span class="co"># estimate interval head</span>
 <span class="fu"><a href="../reference/estimate_missing.html">estimate_missing</a></span><span class="op">(</span><span class="va">blended_2</span>, 
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">transmissivity</span><span class="op">)</span>,
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">head</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span>, <span class="cn">NA_real_</span><span class="op">)</span><span class="op">)</span>
@@ -142,12 +145,23 @@
 <span class="va">head</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>
 <span class="co">#&gt; [1] 1.786913</span>
 
+
+<span class="co"># estimate interval transmissivity</span>
 <span class="fu"><a href="../reference/estimate_missing.html">estimate_missing</a></span><span class="op">(</span><span class="va">blended_2</span>, 
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">transmissivity</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span>, <span class="cn">NA_real_</span><span class="op">)</span>,
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">head</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.445662</span>
 <span class="va">transmissivity</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>
-<span class="co">#&gt; [1] 0.445662</span></code></pre></div>
+<span class="co">#&gt; [1] 0.445662</span>
+
+
+<span class="co"># estimate blended head</span>
+<span class="fu"><a href="../reference/estimate_missing.html">estimate_missing</a></span><span class="op">(</span><span class="cn">NA_real_</span>, 
+                 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">transmissivity</span><span class="op">)</span>,
+                 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">head</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.2145803</span>
+<span class="va">blended_2</span>
+<span class="co">#&gt; [1] 0.2145803</span></code></pre></div>
 </div>
   </div>
 
